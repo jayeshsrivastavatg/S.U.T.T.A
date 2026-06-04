@@ -232,6 +232,107 @@ button{
     border:none;
 }
 
+    .about-section{
+    max-width:1200px;
+    margin:80px auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+.about-header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.lighter-logo{
+    width:120px;
+    margin-bottom:20px;
+    animation:flicker 2s infinite;
+}
+
+@keyframes flicker{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+.about-header h2{
+    font-size:3rem;
+}
+
+.about-text{
+    max-width:850px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:50px;
+}
+
+.leadership-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.leader-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    transition:.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.leader-card:hover{
+    transform:translateY(-8px);
+}
+
+.featured{
+    border:2px solid #2563eb;
+}
+
+.leader-photo{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:15px;
+    border:4px solid #2563eb;
+    box-shadow:0 0 25px rgba(37,99,235,.4);
+}
+
+.placeholder-avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin:0 auto 15px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:3rem;
+    background:#334155;
+    color:white;
+}
+
+.role{
+    color:#60a5fa;
+    font-size:1rem;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.name{
+    font-size:1.5rem;
+    font-weight:700;
+}
+
+.bio{
+    color:#94a3b8;
+    font-size:.9rem;
+    margin-top:10px;
+}
 .footer{
     text-align:center;
     padding:40px;
@@ -358,10 +459,83 @@ button{
 
     </div>
 
+    
+
 </section>
 
 <div class="footer">
     © S.U.T.T.A. Community Prototype
+
+    <section class="about-section">
+
+    <div class="about-header">
+        <img src="lighter.png" class="lighter-logo" alt="Lighter">
+        <h2>About S.U.T.T.A.</h2>
+    </div>
+
+    <p class="about-text">
+        S.U.T.T.A. (Stress Under Temporary Tobacco Assistance) is a community platform
+        designed to connect people through conversations, shared experiences and
+        meaningful interactions.
+    </p>
+
+    <div class="leadership-grid">
+
+        <div class="leader-card featured">
+            <img src="jayesh.png" class="leader-photo" alt="Jayesh">
+
+            <div class="role">CTO</div>
+
+            <div class="name">Jayesh</div>
+
+            <p class="bio">
+                Building the technology powering S.U.T.T.A.
+            </p>
+        </div>
+
+        <div class="leader-card featured">
+            <img src="parul.png" class="leader-photo" alt="Parul">
+
+            <div class="role">CMO</div>
+
+            <div class="name">Parul</div>
+
+            <p class="bio">
+                Driving community growth and outreach.
+            </p>
+        </div>
+
+        <div class="leader-card featured">
+            <img src="shivam.png" class="leader-photo" alt="Shivam">
+
+            <div class="role">COO</div>
+
+            <div class="name">Shivam</div>
+
+            <p class="bio">
+                Managing operations and execution.
+            </p>
+        </div>
+
+        <div class="leader-card">
+            <div class="placeholder-avatar">?</div>
+
+            <div class="role">CEO</div>
+
+            <div class="name">Coming Soon</div>
+        </div>
+
+        <div class="leader-card">
+            <div class="placeholder-avatar">?</div>
+
+            <div class="role">CFO</div>
+
+            <div class="name">Coming Soon</div>
+        </div>
+
+    </div>
+
+</section>
 </div>
 
 </div>
