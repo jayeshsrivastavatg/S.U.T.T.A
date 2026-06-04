@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.U.T.T.A.</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+}
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+.logo{
+  font-size:4rem;
+  font-weight:900;
+  letter-spacing:8px;
+}
+.tagline{
+  margin-top:10px;
+  color:#cbd5e1;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+  padding:30px;
+  max-width:1200px;
+  margin:auto;
+}
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-8px)}
+.icon{
+  font-size:48px;
+  margin-bottom:10px;
+}
+.title{
+  font-size:1.5rem;
+  font-weight:bold;
+}
+.stats{
+  margin:15px 0;
+  line-height:1.8;
+}
+button{
+  border:none;
+  padding:10px 16px;
+  margin:4px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.join{background:#22c55e}
+.chat{background:#3b82f6;color:white}
+.call{background:#a855f7;color:white}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  width:min(800px,95%);
+  background:#111827;
+  border-radius:20px;
+  padding:25px;
+}
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:24px;
+}
+.chatbox{
+  height:220px;
+  overflow:auto;
+  background:#1f2937;
+  padding:10px;
+  border-radius:10px;
+  margin:15px 0;
+}
+.msg{
+  margin:8px 0;
+}
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+}
+.footer{
+  text-align:center;
+  padding:30px;
+  color:#94a3b8;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="logo">S.U.T.T.A.</div>
+  <div class="tagline">Stress Under Temporary Tobacco Assistance</div>
+  <br>
+  <p>Connect. Converse. Build Community.</p>
+</section>
+
+<section class="cards">
+
+  <div class="card">
+    <div class="icon">🤝</div>
+    <div class="title">Connect with Connect</div>
+    <div class="stats">
+      👥 Members: <span>1245</span><br>
+      🟢 Live Now: <span>83</span>
+    </div>
+    <button class="join" onclick="openCommunity('Connect with Connect')">Join Community</button>
+    <button class="chat">Live Chat</button>
+    <button class="call">Live Call</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🚀</div>
+    <div class="title">Stay Advanced with Advance</div>
+    <div class="stats">
+      👥 Members: <span>892</span><br>
+      🟢 Live Now: <span>41</span>
+    </div>
+    <button class="join" onclick="openCommunity('Stay Advanced with Advance')">Join Community</button>
+    <button class="chat">Live Chat</button>
+    <button class="call">Live Call</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🧠</div>
+    <div class="title">Shift Your Mind with Shift</div>
+    <div class="stats">
+      👥 Members: <span>1632</span><br>
+      🟢 Live Now: <span>107</span>
+    </div>
+    <button class="join" onclick="openCommunity('Shift Your Mind with Shift')">Join Community</button>
+    <button class="chat">Live Chat</button>
+    <button class="call">Live Call</button>
+  </div>
+
+</section>
+
+<div class="modal" id="communityModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <h2 id="communityTitle"></h2>
+    <br>
+    <p>Welcome to the community room.</p>
+
+    <div class="chatbox">
+      <div class="msg">👤 Rahul: Anyone online?</div>
+      <div class="msg">👤 Ankit: Just joined.</div>
+      <div class="msg">👤 Priya: Hello everyone!</div>
+    </div>
+
+    <input placeholder="Type a message (prototype UI only)">
+  </div>
+</div>
+
+<div class="footer">
+  Prototype Version • Built for GitHub Pages
+</div>
+
+<script>
+function openCommunity(name){
+  document.getElementById("communityTitle").innerText=name;
+  document.getElementById("communityModal").style.display="flex";
+}
+function closeModal(){
+  document.getElementById("communityModal").style.display="none";
+}
+</script>
+
+</body>
+</html>
