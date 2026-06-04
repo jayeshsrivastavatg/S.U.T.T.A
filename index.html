@@ -91,12 +91,12 @@ body{
 .hero{
     background:
     linear-gradient(
-    rgba(15,23,42,.8),
-    rgba(15,23,42,.9)),
+    rgba(15,23,42,.75),
+    rgba(15,23,42,.85)),
     url("https://images.unsplash.com/photo-1512403754473-27835f7b9984?q=80&w=1600");
     background-size:cover;
     background-position:center;
-    min-height:70vh;
+    min-height:75vh;
 
     display:flex;
     flex-direction:column;
@@ -104,19 +104,38 @@ body{
     align-items:center;
 
     text-align:center;
-    padding:40px;
+    padding:60px 24px;
 }
 
-.logo{
-    font-size:5rem;
+.hero-banner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:min(920px,100%);
+    padding:56px 48px;
+    background:rgba(15,23,42,.82);
+    border:3px solid rgba(96,165,250,.45);
+    border-radius:28px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 24px 80px rgba(0,0,0,.55);
+}
+
+.hero .logo{
+    font-size:clamp(4rem,14vw,9rem);
     font-weight:900;
-    letter-spacing:12px;
+    letter-spacing:clamp(10px,2.5vw,22px);
+    color:#ffffff;
+    line-height:1.05;
+    text-shadow:0 6px 40px rgba(0,0,0,.7);
 }
 
 .tagline{
-    margin-top:20px;
-    font-size:1.3rem;
+    margin-top:28px;
+    font-size:clamp(1rem,2.5vw,1.35rem);
     color:#cbd5e1;
+    max-width:600px;
+    line-height:1.6;
 }
 
 .site-nav{
@@ -686,10 +705,11 @@ button{
 
 <section class="hero" id="home">
 
-    <div class="logo">S.U.T.T.A.</div>
-
-    <div class="tagline">
-        Stress Under Temporary Tobacco Assistance
+    <div class="hero-banner">
+        <div class="logo">S.U.T.T.A.</div>
+        <div class="tagline">
+            Stress Under Temporary Tobacco Assistance
+        </div>
     </div>
 
 </section>
