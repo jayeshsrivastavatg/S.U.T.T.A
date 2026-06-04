@@ -184,8 +184,16 @@ body{
     background:#0f172a;
 }
 
-.dashboard.active{
+.dashboard.active,
+.about-dashboard.active{
     display:block;
+}
+
+.about-dashboard{
+    display:none;
+    min-height:calc(100vh - 60px);
+    padding:40px 24px 60px;
+    background:#0f172a;
 }
 
 .dashboard-header{
@@ -455,24 +463,38 @@ button{
 
 .about-section{
     max-width:1200px;
-    margin:80px auto;
+    margin:60px auto;
     padding:40px 20px;
     text-align:center;
     scroll-margin-top:70px;
 }
 
-.about-header{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:30px;
+.about-lighter-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:12px;
+    border-radius:50%;
+    transition:transform .2s, box-shadow .2s;
 }
 
-.lighter-logo{
-    width:120px;
-    margin-bottom:20px;
+.about-lighter-btn:hover,
+.about-lighter-btn:focus{
+    transform:scale(1.08);
+    box-shadow:0 0 40px rgba(251,191,36,.35);
+}
+
+.about-lighter-btn img{
+    width:100px;
+    height:auto;
+    display:block;
     animation:flicker 2s infinite;
+}
+
+.about-lighter-label{
+    margin-top:16px;
+    color:#94a3b8;
+    font-size:.95rem;
 }
 
 @keyframes flicker{
@@ -481,82 +503,43 @@ button{
     100%{transform:scale(1);}
 }
 
-.about-header h2{
-    font-size:3rem;
-    color:white;
-}
-
-.about-text{
-    max-width:850px;
-    margin:auto;
-    color:#cbd5e1;
-    line-height:1.8;
-    margin-bottom:50px;
-}
-
-.leadership-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.leader-card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:20px;
-    transition:.3s;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.leader-card:hover{
-    transform:translateY(-8px);
-}
-
-.featured{
-    border:2px solid #2563eb;
-}
-
-.leader-photo{
-    display:block;
-    width:120px;
-    height:120px;
-    object-fit:cover;
-    border-radius:50%;
-    margin:0 auto 15px auto;
-    border:4px solid #2563eb;
-    box-shadow:0 0 25px rgba(37,99,235,.4);
-}
-
-.placeholder-avatar{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    margin:0 auto 15px auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:3rem;
-    background:#334155;
-    color:white;
-}
-
-.role{
+.about-dashboard .role{
     color:#60a5fa;
     font-size:1rem;
     font-weight:bold;
-    margin-bottom:10px;
+    margin-bottom:6px;
 }
 
-.name{
-    font-size:1.5rem;
+.about-dashboard .name{
+    font-size:1.25rem;
     font-weight:700;
     color:white;
 }
 
-.bio{
+.about-dashboard .bio{
     color:#94a3b8;
     font-size:.9rem;
     margin-top:10px;
+    line-height:1.5;
+}
+
+.about-leader-card{
+    background:#1e293b;
+    padding:24px;
+    border-radius:20px;
+    text-align:center;
+    border:2px solid #2563eb;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.about-leader-card img{
+    display:block;
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:50%;
+    margin:0 auto 14px auto;
+    border:4px solid #2563eb;
 }
 .footer{
     text-align:center;
@@ -587,9 +570,9 @@ button{
         S.U.T.T.A.
     </button>
     <div class="nav-links">
-        <a href="#home" onclick="closeDashboard()">Home</a>
-        <a href="#communities" onclick="closeDashboard()">Communities</a>
-        <a href="#about" onclick="closeDashboard()">About</a>
+        <a href="#home" onclick="closeAllDashboards()">Home</a>
+        <a href="#communities" onclick="closeAllDashboards()">Communities</a>
+        <a href="#about" onclick="openAboutDashboard(); return false;">About</a>
     </div>
 </nav>
 
@@ -618,7 +601,7 @@ button{
         </div>
         <div class="stat-card">
             <div class="label">Leadership team</div>
-            <div class="value">3 / 5</div>
+            <div class="value">3</div>
         </div>
     </div>
 
@@ -652,44 +635,49 @@ button{
         </div>
     </div>
 
-    <div class="dashboard-section">
-        <h2>Leadership</h2>
-        <div class="dashboard-leaders">
-            <div class="dashboard-leader">
-                <img src="jayesh.png" alt="Jayesh">
-                <div class="role">CTO</div>
-                <div class="name">Jayesh</div>
-            </div>
-            <div class="dashboard-leader">
-                <img src="parul.png" alt="Parul">
-                <div class="role">CMO</div>
-                <div class="name">Parul</div>
-            </div>
-            <div class="dashboard-leader">
-                <img src="shivam.png" alt="Shivam">
-                <div class="role">COO</div>
-                <div class="name">Shivam</div>
-            </div>
-            <div class="dashboard-leader">
-                <div class="placeholder-avatar" style="width:64px;height:64px;font-size:1.5rem;margin:0 auto 10px;">?</div>
-                <div class="role">CEO</div>
-                <div class="name">Coming Soon</div>
-            </div>
-            <div class="dashboard-leader">
-                <div class="placeholder-avatar" style="width:64px;height:64px;font-size:1.5rem;margin:0 auto 10px;">?</div>
-                <div class="role">CFO</div>
-                <div class="name">Coming Soon</div>
-            </div>
+</div>
+
+<div id="about-dashboard" class="about-dashboard" aria-hidden="true">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>About S.U.T.T.A.</h1>
+            <p>Stress Under Temporary Tobacco Assistance</p>
         </div>
+        <button type="button" class="dashboard-close" onclick="closeAboutDashboard()">← Back to site</button>
     </div>
 
     <div class="dashboard-section">
-        <h2>Mission</h2>
+        <h2>Our mission</h2>
         <p class="dashboard-mission">
-            S.U.T.T.A. connects people through conversations, shared experiences, and meaningful
-            interactions. The platform hosts live chat, community rooms, and leadership-driven
-            initiatives across Connect, Advance, and Shift communities.
+            S.U.T.T.A. (Stress Under Temporary Tobacco Assistance) is a community platform
+            designed to connect people through conversations, shared experiences, and
+            meaningful interactions across live chat, community rooms, and shared support.
         </p>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Leadership</h2>
+        <div class="dashboard-leaders">
+            <div class="about-leader-card">
+                <img src="jayesh.png" alt="Jayesh">
+                <div class="role">CEO · CTO</div>
+                <div class="name">Jayesh</div>
+                <p class="bio">Executive vision and technology leadership for S.U.T.T.A.</p>
+            </div>
+            <div class="about-leader-card">
+                <img src="parul.png" alt="Parul">
+                <div class="role">CMO</div>
+                <div class="name">Parul</div>
+                <p class="bio">Driving community growth and outreach.</p>
+            </div>
+            <div class="about-leader-card">
+                <img src="shivam.png" alt="Shivam">
+                <div class="role">COO · CFO</div>
+                <div class="name">Shivam</div>
+                <p class="bio">Operations, finance, and execution across the platform.</p>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -800,72 +788,10 @@ button{
 
 <section class="about-section" id="about">
 
-    <div class="about-header">
-        <img src="lighter.png" class="lighter-logo" alt="Lighter">
-        <h2>About S.U.T.T.A.</h2>
-    </div>
-
-    <p class="about-text">
-        S.U.T.T.A. (Stress Under Temporary Tobacco Assistance) is a community platform
-        designed to connect people through conversations, shared experiences and
-        meaningful interactions.
-    </p>
-
-    <div class="leadership-grid">
-
-        <div class="leader-card featured">
-            <img src="jayesh.png" class="leader-photo" alt="Jayesh">
-
-            <div class="role">CTO</div>
-
-            <div class="name">Jayesh</div>
-
-            <p class="bio">
-                Building the technology powering S.U.T.T.A.
-            </p>
-        </div>
-
-        <div class="leader-card featured">
-            <img src="parul.png" class="leader-photo" alt="Parul">
-
-            <div class="role">CMO</div>
-
-            <div class="name">Parul</div>
-
-            <p class="bio">
-                Driving community growth and outreach.
-            </p>
-        </div>
-
-        <div class="leader-card featured">
-            <img src="shivam.png" class="leader-photo" alt="Shivam">
-
-            <div class="role">COO</div>
-
-            <div class="name">Shivam</div>
-
-            <p class="bio">
-                Managing operations and execution.
-            </p>
-        </div>
-
-        <div class="leader-card">
-            <div class="placeholder-avatar">?</div>
-
-            <div class="role">CEO</div>
-
-            <div class="name">Coming Soon</div>
-        </div>
-
-        <div class="leader-card">
-            <div class="placeholder-avatar">?</div>
-
-            <div class="role">CFO</div>
-
-            <div class="name">Coming Soon</div>
-        </div>
-
-    </div>
+    <button type="button" class="about-lighter-btn" onclick="openAboutDashboard()" aria-label="Open about dashboard">
+        <img src="lighter.png" alt="About S.U.T.T.A.">
+    </button>
+    <p class="about-lighter-label">Tap the lighter for about &amp; leadership</p>
 
 </section>
 
@@ -952,11 +878,28 @@ function closeCommunity(){
 
 }
 
+function hideMainContent(){
+
+    document.getElementById("main-content").classList.add("hidden");
+
+}
+
+function showMainContent(){
+
+    const platform=document.getElementById("dashboard").classList.contains("active");
+    const about=document.getElementById("about-dashboard").classList.contains("active");
+    if(!platform&&!about){
+        document.getElementById("main-content").classList.remove("hidden");
+    }
+
+}
+
 function openDashboard(){
 
+    closeAboutDashboard();
     document.getElementById("dashboard").classList.add("active");
     document.getElementById("dashboard").setAttribute("aria-hidden","false");
-    document.getElementById("main-content").classList.add("hidden");
+    hideMainContent();
     document.getElementById("brandLogo").setAttribute("aria-label","Close S.U.T.T.A. dashboard");
     window.scrollTo({top:0,behavior:"smooth"});
 
@@ -966,8 +909,8 @@ function closeDashboard(){
 
     document.getElementById("dashboard").classList.remove("active");
     document.getElementById("dashboard").setAttribute("aria-hidden","true");
-    document.getElementById("main-content").classList.remove("hidden");
     document.getElementById("brandLogo").setAttribute("aria-label","Open S.U.T.T.A. dashboard");
+    showMainContent();
 
 }
 
@@ -978,6 +921,42 @@ function toggleDashboard(){
         closeDashboard();
     }else{
         openDashboard();
+    }
+
+}
+
+function openAboutDashboard(){
+
+    closeDashboard();
+    document.getElementById("about-dashboard").classList.add("active");
+    document.getElementById("about-dashboard").setAttribute("aria-hidden","false");
+    hideMainContent();
+    window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+function closeAboutDashboard(){
+
+    document.getElementById("about-dashboard").classList.remove("active");
+    document.getElementById("about-dashboard").setAttribute("aria-hidden","true");
+    showMainContent();
+
+}
+
+function closeAllDashboards(){
+
+    closeDashboard();
+    closeAboutDashboard();
+
+}
+
+function toggleAboutDashboard(){
+
+    const about=document.getElementById("about-dashboard");
+    if(about.classList.contains("active")){
+        closeAboutDashboard();
+    }else{
+        openAboutDashboard();
     }
 
 }
