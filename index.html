@@ -3,188 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>S.U.T.T.A.</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
 }
+
+/* Splash Screen */
+
+#splash-screen{
+    position:fixed;
+    inset:0;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    animation:fadeOut 1s ease forwards;
+    animation-delay:3s;
+}
+
+#splash-screen img{
+    width:min(900px,90vw);
+    animation:zoomIn 2.5s ease;
+}
+
+.splash-title{
+    margin-top:25px;
+    font-size:4rem;
+    font-weight:900;
+    letter-spacing:10px;
+    color:#0f172a;
+    opacity:0;
+    animation:titleAppear 1s forwards;
+    animation-delay:1s;
+}
+
+.splash-subtitle{
+    color:#475569;
+    margin-top:10px;
+    opacity:0;
+    animation:titleAppear 1s forwards;
+    animation-delay:1.5s;
+}
+
+@keyframes zoomIn{
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes titleAppear{
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeOut{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+/* Main App */
+
+#main-app{
+    display:none;
+}
+
 .hero{
-  text-align:center;
-  padding:60px 20px;
+    background:
+    linear-gradient(
+    rgba(15,23,42,.8),
+    rgba(15,23,42,.9)),
+    url("https://images.unsplash.com/photo-1512403754473-27835f7b9984?q=80&w=1600");
+    background-size:cover;
+    background-position:center;
+    min-height:70vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    padding:40px;
 }
+
 .logo{
-  font-size:4rem;
-  font-weight:900;
-  letter-spacing:8px;
+    font-size:5rem;
+    font-weight:900;
+    letter-spacing:12px;
 }
+
 .tagline{
-  margin-top:10px;
-  color:#cbd5e1;
+    margin-top:20px;
+    font-size:1.3rem;
+    color:#cbd5e1;
 }
+
 .cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-  padding:30px;
-  max-width:1200px;
-  margin:auto;
+    max-width:1300px;
+    margin:auto;
+    padding:50px 20px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
 }
+
 .card{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-  transition:.3s;
+    background:#1e293b;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    transition:.3s;
 }
-.card:hover{transform:translateY(-8px)}
-.icon{
-  font-size:48px;
-  margin-bottom:10px;
+
+.card:hover{
+    transform:translateY(-10px);
 }
-.title{
-  font-size:1.5rem;
-  font-weight:bold;
+
+.community-icon{
+    font-size:4rem;
+    margin-bottom:20px;
 }
+
+.community-title{
+    font-size:1.8rem;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
 .stats{
-  margin:15px 0;
-  line-height:1.8;
+    line-height:2;
+    color:#cbd5e1;
 }
+
+.buttons{
+    margin-top:20px;
+}
+
 button{
-  border:none;
-  padding:10px 16px;
-  margin:4px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    margin:5px;
+    font-weight:bold;
 }
-.join{background:#22c55e}
-.chat{background:#3b82f6;color:white}
-.call{background:#a855f7;color:white}
+
+.join-btn{
+    background:#22c55e;
+}
+
+.chat-btn{
+    background:#3b82f6;
+    color:white;
+}
+
+.call-btn{
+    background:#9333ea;
+    color:white;
+}
+
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  justify-content:center;
-  align-items:center;
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
 }
+
 .modal-content{
-  width:min(800px,95%);
-  background:#111827;
-  border-radius:20px;
-  padding:25px;
+    width:min(800px,95%);
+    background:#111827;
+    border-radius:20px;
+    padding:30px;
 }
+
 .close{
-  float:right;
-  cursor:pointer;
-  font-size:24px;
+    float:right;
+    cursor:pointer;
+    font-size:24px;
 }
+
 .chatbox{
-  height:220px;
-  overflow:auto;
-  background:#1f2937;
-  padding:10px;
-  border-radius:10px;
-  margin:15px 0;
+    margin-top:20px;
+    height:250px;
+    overflow-y:auto;
+    background:#1f2937;
+    border-radius:15px;
+    padding:15px;
 }
-.msg{
-  margin:8px 0;
+
+.message{
+    margin-bottom:12px;
 }
-input{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:none;
+
+.message-input{
+    margin-top:15px;
 }
+
+.message-input input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+}
+
 .footer{
-  text-align:center;
-  padding:30px;
-  color:#94a3b8;
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
 }
 </style>
 </head>
+
 <body>
 
+<!-- SPLASH SCREEN -->
+
+<div id="splash-screen">
+    <img src="connecting-people.png" alt="Connecting People">
+    <div class="splash-title">S.U.T.T.A.</div>
+    <div class="splash-subtitle">
+        Stress Under Temporary Tobacco Assistance
+    </div>
+</div>
+
+<!-- MAIN APP -->
+
+<div id="main-app">
+
 <section class="hero">
-  <div class="logo">S.U.T.T.A.</div>
-  <div class="tagline">Stress Under Temporary Tobacco Assistance</div>
-  <br>
-  <p>Connect. Converse. Build Community.</p>
+
+    <div class="logo">S.U.T.T.A.</div>
+
+    <div class="tagline">
+        Stress Under Temporary Tobacco Assistance
+    </div>
+
 </section>
 
 <section class="cards">
 
-  <div class="card">
-    <div class="icon">🤝</div>
-    <div class="title">Connect with Connect</div>
-    <div class="stats">
-      👥 Members: <span>1245</span><br>
-      🟢 Live Now: <span>83</span>
-    </div>
-    <button class="join" onclick="openCommunity('Connect with Connect')">Join Community</button>
-    <button class="chat">Live Chat</button>
-    <button class="call">Live Call</button>
-  </div>
+    <div class="card">
 
-  <div class="card">
-    <div class="icon">🚀</div>
-    <div class="title">Stay Advanced with Advance</div>
-    <div class="stats">
-      👥 Members: <span>892</span><br>
-      🟢 Live Now: <span>41</span>
-    </div>
-    <button class="join" onclick="openCommunity('Stay Advanced with Advance')">Join Community</button>
-    <button class="chat">Live Chat</button>
-    <button class="call">Live Call</button>
-  </div>
+        <div class="community-icon">🤝</div>
 
-  <div class="card">
-    <div class="icon">🧠</div>
-    <div class="title">Shift Your Mind with Shift</div>
-    <div class="stats">
-      👥 Members: <span>1632</span><br>
-      🟢 Live Now: <span>107</span>
+        <div class="community-title">
+            Connect with Connect
+        </div>
+
+        <div class="stats">
+            👥 Members Joined: 1,245 <br>
+            🟢 Live Now: 83
+        </div>
+
+        <div class="buttons">
+            <button class="join-btn"
+            onclick="openCommunity('Connect with Connect')">
+                Join Community
+            </button>
+
+            <button class="chat-btn">
+                Live Chat
+            </button>
+
+            <button class="call-btn">
+                Live Call
+            </button>
+        </div>
+
     </div>
-    <button class="join" onclick="openCommunity('Shift Your Mind with Shift')">Join Community</button>
-    <button class="chat">Live Chat</button>
-    <button class="call">Live Call</button>
-  </div>
+
+    <div class="card">
+
+        <div class="community-icon">🚀</div>
+
+        <div class="community-title">
+            Stay Advanced with Advance
+        </div>
+
+        <div class="stats">
+            👥 Members Joined: 892 <br>
+            🟢 Live Now: 41
+        </div>
+
+        <div class="buttons">
+            <button class="join-btn"
+            onclick="openCommunity('Stay Advanced with Advance')">
+                Join Community
+            </button>
+
+            <button class="chat-btn">
+                Live Chat
+            </button>
+
+            <button class="call-btn">
+                Live Call
+            </button>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="community-icon">🧠</div>
+
+        <div class="community-title">
+            Shift Your Mind with Shift
+        </div>
+
+        <div class="stats">
+            👥 Members Joined: 1,632 <br>
+            🟢 Live Now: 107
+        </div>
+
+        <div class="buttons">
+            <button class="join-btn"
+            onclick="openCommunity('Shift Your Mind with Shift')">
+                Join Community
+            </button>
+
+            <button class="chat-btn">
+                Live Chat
+            </button>
+
+            <button class="call-btn">
+                Live Call
+            </button>
+        </div>
+
+    </div>
 
 </section>
 
-<div class="modal" id="communityModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">✖</span>
-    <h2 id="communityTitle"></h2>
-    <br>
-    <p>Welcome to the community room.</p>
-
-    <div class="chatbox">
-      <div class="msg">👤 Rahul: Anyone online?</div>
-      <div class="msg">👤 Ankit: Just joined.</div>
-      <div class="msg">👤 Priya: Hello everyone!</div>
-    </div>
-
-    <input placeholder="Type a message (prototype UI only)">
-  </div>
+<div class="footer">
+    © S.U.T.T.A. Community Prototype
 </div>
 
-<div class="footer">
-  Prototype Version • Built for GitHub Pages
+</div>
+
+<!-- COMMUNITY MODAL -->
+
+<div class="modal" id="communityModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeCommunity()">
+            ✖
+        </span>
+
+        <h2 id="communityName"></h2>
+
+        <br>
+
+        <p>
+            Community room prototype.
+        </p>
+
+        <div class="chatbox">
+
+            <div class="message">
+                👤 Chemii: Anyone online?
+            </div>
+
+            <div class="message">
+                👤 Jayesh: Just joined.
+            </div>
+
+            <div class="message">
+                👤 Paroo: Hello everyone.
+            </div>
+
+        </div>
+
+        <div class="message-input">
+            <input placeholder="Type a message...">
+        </div>
+
+    </div>
+
 </div>
 
 <script>
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document.getElementById("splash-screen").remove();
+
+        document.getElementById("main-app").style.display="block";
+
+    },3000);
+
+});
+
 function openCommunity(name){
-  document.getElementById("communityTitle").innerText=name;
-  document.getElementById("communityModal").style.display="flex";
+
+    document.getElementById("communityName").innerText=name;
+
+    document.getElementById("communityModal").style.display="flex";
+
 }
-function closeModal(){
-  document.getElementById("communityModal").style.display="none";
+
+function closeCommunity(){
+
+    document.getElementById("communityModal").style.display="none";
+
 }
+
 </script>
 
 </body>
