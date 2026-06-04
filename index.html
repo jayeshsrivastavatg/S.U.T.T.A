@@ -142,20 +142,22 @@ body{
     position:sticky;
     top:0;
     z-index:100;
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+        "brand nav"
+        "brand lighter";
+    gap:6px 20px;
+    align-items:center;
+    padding:14px 28px 12px;
     background:rgba(15,23,42,.95);
     backdrop-filter:blur(8px);
     border-bottom:1px solid #334155;
 }
 
-.site-nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:24px;
-    padding:14px 28px;
-}
-
 .brand-logo{
+    grid-area:brand;
+    justify-self:start;
     background:none;
     border:none;
     color:white;
@@ -175,10 +177,18 @@ body{
 }
 
 .nav-links{
+    grid-area:nav;
+    justify-self:end;
     display:flex;
     flex-wrap:wrap;
-    justify-content:center;
+    justify-content:flex-end;
     gap:8px;
+}
+
+.about-lighter-slot{
+    grid-area:lighter;
+    justify-self:end;
+    line-height:0;
 }
 
 .site-nav a{
@@ -355,23 +365,14 @@ body{
 }
 
 @media (max-width:600px){
-    .site-nav{
-        flex-direction:column;
-        padding:12px 16px;
-    }
-
-    .about-toolbar{
-        padding:0 16px 10px;
+    .site-header{
+        padding:12px 16px 10px;
+        gap:4px 12px;
     }
 
     .brand-logo{
         font-size:1.25rem;
         letter-spacing:4px;
-    }
-
-    .nav-links{
-        width:100%;
-        justify-content:center;
     }
 
     .about-lighter-btn img{
@@ -491,14 +492,6 @@ button{
     border:none;
 }
 
-.about-toolbar{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    padding:0 28px 12px;
-    border-top:1px solid rgba(51,65,85,.5);
-}
-
 .about-lighter-btn{
     background:none;
     border:none;
@@ -591,17 +584,15 @@ button{
 <div id="main-app">
 
 <header class="site-header">
-    <nav class="site-nav">
-        <button type="button" class="brand-logo" id="brandLogo" onclick="toggleDashboard()" aria-label="Open S.U.T.T.A. dashboard">
-            S.U.T.T.A.
-        </button>
-        <div class="nav-links">
-            <a href="#home" onclick="closeAllDashboards()">Home</a>
-            <a href="#communities" onclick="closeAllDashboards()">Communities</a>
-            <a href="#about" onclick="openAboutDashboard(); return false;">About</a>
-        </div>
-    </nav>
-    <div class="about-toolbar" id="about">
+    <button type="button" class="brand-logo" id="brandLogo" onclick="toggleDashboard()" aria-label="Open S.U.T.T.A. dashboard">
+        S.U.T.T.A.
+    </button>
+    <div class="nav-links">
+        <a href="#home" onclick="closeAllDashboards()">Home</a>
+        <a href="#communities" onclick="closeAllDashboards()">Communities</a>
+        <a href="#about" onclick="openAboutDashboard(); return false;">About</a>
+    </div>
+    <div class="about-lighter-slot" id="about">
         <button type="button" class="about-lighter-btn" onclick="openAboutDashboard()" aria-label="Open about dashboard" title="About S.U.T.T.A.">
             <img src="lighter.png" alt="">
         </button>
